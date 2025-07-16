@@ -59,12 +59,48 @@ contentPanel.add(FeedbackPanel, "feedback");
         contentPanel = new javax.swing.JPanel();
         DashboardPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
         AppointmentsPanel = new javax.swing.JPanel();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        jLabel3 = new javax.swing.JLabel();
+        txtStudentName = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txtTime = new javax.swing.JTextField();
+        comboCounselor = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        txtDate = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        comboStatus = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        btnAdd = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
         CounselorPanel = new javax.swing.JPanel();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        jLabel8 = new javax.swing.JLabel();
+        txtCounselorName = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        txtSpecialization = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        comboAvailability = new javax.swing.JComboBox<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tableCounselors = new javax.swing.JTable();
+        btnAdd2 = new javax.swing.JButton();
+        btnUpdate2 = new javax.swing.JButton();
+        btnDelete2 = new javax.swing.JButton();
         FeedbackPanel = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        txtStudentFeedback = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        comboRating = new javax.swing.JComboBox<>();
+        jLabel13 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtComments = new javax.swing.JTextArea();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tableFeedback = new javax.swing.JTable();
+        txtAdd3 = new javax.swing.JButton();
+        txtUpdate3 = new javax.swing.JButton();
+        txtDelete3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1024, 768));
@@ -75,35 +111,35 @@ contentPanel.add(FeedbackPanel, "feedback");
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/download__3_-removebg-preview.png"))); // NOI18N
         jLabel1.setText("jLabel1");
 
-        btnDashboard.setText("jButton1");
+        btnDashboard.setText("Welcome");
         btnDashboard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDashboardActionPerformed(evt);
             }
         });
 
-        btnAppointments.setText("jButton2");
+        btnAppointments.setText("Appointments");
         btnAppointments.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAppointmentsActionPerformed(evt);
             }
         });
 
-        btnCounselors.setText("jButton3");
+        btnCounselors.setText("Counselors");
         btnCounselors.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCounselorsActionPerformed(evt);
             }
         });
 
-        btnFeedback.setText("jButton4");
+        btnFeedback.setText("Feedback");
         btnFeedback.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFeedbackActionPerformed(evt);
             }
         });
 
-        btnExit.setText("jButton5");
+        btnExit.setText("Exit");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExitActionPerformed(evt);
@@ -147,88 +183,339 @@ contentPanel.add(FeedbackPanel, "feedback");
         );
 
         contentPanel.setBackground(new java.awt.Color(0, 204, 204));
+        contentPanel.setPreferredSize(new java.awt.Dimension(924, 750));
         contentPanel.setLayout(new java.awt.CardLayout());
 
-        jLabel2.setText("jLabel2");
+        DashboardPanel.setBackground(new java.awt.Color(0, 204, 204));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel2.setText("WELCOME TO BC STUDENT WELLNESS ");
+
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/download__3_-removebg-preview.png"))); // NOI18N
 
         javax.swing.GroupLayout DashboardPanelLayout = new javax.swing.GroupLayout(DashboardPanel);
         DashboardPanel.setLayout(DashboardPanelLayout);
         DashboardPanelLayout.setHorizontalGroup(
             DashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DashboardPanelLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(761, Short.MAX_VALUE))
+                .addGroup(DashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DashboardPanelLayout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addComponent(jLabel2))
+                    .addGroup(DashboardPanelLayout.createSequentialGroup()
+                        .addGap(267, 267, 267)
+                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         DashboardPanelLayout.setVerticalGroup(
             DashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DashboardPanelLayout.createSequentialGroup()
-                .addGap(58, 58, 58)
+                .addGap(57, 57, 57)
                 .addComponent(jLabel2)
-                .addContainerGap(3676, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addComponent(jLabel14)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         contentPanel.add(DashboardPanel, "card2");
 
-        jToggleButton1.setText("jToggleButton1");
+        AppointmentsPanel.setBackground(new java.awt.Color(0, 204, 204));
+
+        jLabel3.setText("Student Name");
+
+        jLabel4.setText("Counselor");
+
+        comboCounselor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alisha", "Themba", "Suhil", "Duan" }));
+
+        jLabel5.setText("Date");
+
+        jLabel6.setText("Time");
+
+        jLabel7.setText("Status");
+
+        comboStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Booked", "Rescheduled", "Cancelled", "Completed" }));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Student", "Counselor", "Date", "Time", "Status"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+
+        btnUpdate.setText("Update");
+
+        btnDelete.setText("Delete");
 
         javax.swing.GroupLayout AppointmentsPanelLayout = new javax.swing.GroupLayout(AppointmentsPanel);
         AppointmentsPanel.setLayout(AppointmentsPanelLayout);
         AppointmentsPanelLayout.setHorizontalGroup(
             AppointmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AppointmentsPanelLayout.createSequentialGroup()
-                .addGap(291, 291, 291)
-                .addComponent(jToggleButton1)
-                .addContainerGap(445, Short.MAX_VALUE))
+                .addGroup(AppointmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(AppointmentsPanelLayout.createSequentialGroup()
+                        .addGroup(AppointmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtStudentName, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboCounselor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(AppointmentsPanelLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(AppointmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtTime, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(comboStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 702, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(AppointmentsPanelLayout.createSequentialGroup()
+                        .addGap(143, 143, 143)
+                        .addComponent(btnAdd)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnUpdate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnDelete)))
+                .addContainerGap(136, Short.MAX_VALUE))
         );
         AppointmentsPanelLayout.setVerticalGroup(
             AppointmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AppointmentsPanelLayout.createSequentialGroup()
-                .addGap(83, 83, 83)
-                .addComponent(jToggleButton1)
-                .addContainerGap(3644, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtStudentName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(comboCounselor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(comboStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(AppointmentsPanelLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(AppointmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAdd)
+                    .addComponent(btnUpdate)
+                    .addComponent(btnDelete))
+                .addGap(0, 3288, Short.MAX_VALUE))
         );
 
         contentPanel.add(AppointmentsPanel, "card3");
 
-        jRadioButton1.setText("jRadioButton1");
+        CounselorPanel.setBackground(new java.awt.Color(0, 204, 204));
+
+        jLabel8.setText("Name");
+
+        jLabel9.setText("Specialization");
+
+        jLabel10.setText("Availability");
+
+        comboAvailability.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Available", "Unavailble" }));
+
+        tableCounselors.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "ID", "Name", "Specialization", "Availability"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tableCounselors);
+
+        btnAdd2.setText("jButton1");
+
+        btnUpdate2.setText("jButton2");
+
+        btnDelete2.setText("jButton3");
 
         javax.swing.GroupLayout CounselorPanelLayout = new javax.swing.GroupLayout(CounselorPanel);
         CounselorPanel.setLayout(CounselorPanelLayout);
         CounselorPanelLayout.setHorizontalGroup(
             CounselorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CounselorPanelLayout.createSequentialGroup()
-                .addGap(282, 282, 282)
-                .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(468, Short.MAX_VALUE))
+                .addGroup(CounselorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CounselorPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(CounselorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCounselorName, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSpecialization, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboAvailability, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))
+                        .addGap(32, 32, 32)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 633, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(CounselorPanelLayout.createSequentialGroup()
+                        .addGap(136, 136, 136)
+                        .addComponent(btnAdd2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnUpdate2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnDelete2)))
+                .addContainerGap(202, Short.MAX_VALUE))
         );
         CounselorPanelLayout.setVerticalGroup(
             CounselorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CounselorPanelLayout.createSequentialGroup()
-                .addGap(84, 84, 84)
-                .addComponent(jRadioButton1)
-                .addContainerGap(3645, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(CounselorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(CounselorPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCounselorName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtSpecialization, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(comboAvailability, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(CounselorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAdd2)
+                    .addComponent(btnUpdate2)
+                    .addComponent(btnDelete2))
+                .addContainerGap(3288, Short.MAX_VALUE))
         );
 
         contentPanel.add(CounselorPanel, "card4");
 
-        jTextField1.setText("jTextField1");
+        FeedbackPanel.setBackground(new java.awt.Color(0, 204, 204));
+
+        jLabel11.setText("Student Name");
+
+        jLabel12.setText("Rating");
+
+        comboRating.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", " " }));
+
+        jLabel13.setText("Comments");
+
+        txtComments.setColumns(20);
+        txtComments.setRows(5);
+        jScrollPane3.setViewportView(txtComments);
+
+        tableFeedback.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "ID", "Student ", "Rating", "Comments"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(tableFeedback);
+
+        txtAdd3.setText("Submit");
+
+        txtUpdate3.setText("Update");
+
+        txtDelete3.setText("Delete");
 
         javax.swing.GroupLayout FeedbackPanelLayout = new javax.swing.GroupLayout(FeedbackPanel);
         FeedbackPanel.setLayout(FeedbackPanelLayout);
         FeedbackPanelLayout.setHorizontalGroup(
             FeedbackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FeedbackPanelLayout.createSequentialGroup()
-                .addGap(239, 239, 239)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(538, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(FeedbackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtStudentFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboRating, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13))
+                .addGap(18, 18, 18)
+                .addGroup(FeedbackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(FeedbackPanelLayout.createSequentialGroup()
+                        .addComponent(txtAdd3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtUpdate3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtDelete3)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE))
+                .addContainerGap())
         );
         FeedbackPanelLayout.setVerticalGroup(
             FeedbackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FeedbackPanelLayout.createSequentialGroup()
-                .addGap(87, 87, 87)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(3641, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(FeedbackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(FeedbackPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtStudentFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(comboRating, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(FeedbackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtAdd3)
+                    .addComponent(txtUpdate3)
+                    .addComponent(txtDelete3))
+                .addContainerGap(3288, Short.MAX_VALUE))
         );
 
         contentPanel.add(FeedbackPanel, "card5");
@@ -240,7 +527,7 @@ contentPanel.add(FeedbackPanel, "feedback");
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelSidebar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(contentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 848, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 848, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -252,7 +539,7 @@ contentPanel.add(FeedbackPanel, "feedback");
                         .addComponent(panelSidebar, javax.swing.GroupLayout.PREFERRED_SIZE, 3836, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
                         .addGap(92, 92, 92))))
         );
 
@@ -288,6 +575,10 @@ contentPanel.add(FeedbackPanel, "feedback");
          System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
 
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -319,17 +610,53 @@ contentPanel.add(FeedbackPanel, "feedback");
     private javax.swing.JPanel CounselorPanel;
     private javax.swing.JPanel DashboardPanel;
     private javax.swing.JPanel FeedbackPanel;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnAdd2;
     private javax.swing.JButton btnAppointments;
     private javax.swing.JButton btnCounselors;
     private javax.swing.JButton btnDashboard;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnDelete2;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnFeedback;
+    private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton btnUpdate2;
+    private javax.swing.JComboBox<String> comboAvailability;
+    private javax.swing.JComboBox<String> comboCounselor;
+    private javax.swing.JComboBox<String> comboRating;
+    private javax.swing.JComboBox<String> comboStatus;
     private javax.swing.JPanel contentPanel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTable jTable1;
     private javax.swing.JPanel panelSidebar;
+    private javax.swing.JTable tableCounselors;
+    private javax.swing.JTable tableFeedback;
+    private javax.swing.JButton txtAdd3;
+    private javax.swing.JTextArea txtComments;
+    private javax.swing.JTextField txtCounselorName;
+    private javax.swing.JTextField txtDate;
+    private javax.swing.JButton txtDelete3;
+    private javax.swing.JTextField txtSpecialization;
+    private javax.swing.JTextField txtStudentFeedback;
+    private javax.swing.JTextField txtStudentName;
+    private javax.swing.JTextField txtTime;
+    private javax.swing.JButton txtUpdate3;
     // End of variables declaration//GEN-END:variables
 }
