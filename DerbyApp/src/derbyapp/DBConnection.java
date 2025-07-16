@@ -4,7 +4,10 @@
  */
 package derbyapp;
 
-import com.sun.jdi.connect.spi.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Connection;
+
 
 /**
  *
@@ -31,7 +34,7 @@ public class DBConnection {
                     System.out.println("Connected to database");
                 }
             } catch (SQLException ex) {
-                ex.printStacktrace();
+                 ex.printStackTrace();
             }
         }
 }
