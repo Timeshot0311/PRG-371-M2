@@ -10,6 +10,8 @@ import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.awt.CardLayout;
+import javax.swing.ImageIcon;
+
 
 
 /**
@@ -25,6 +27,9 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
+        
+        setIconImage(new ImageIcon(getClass().getResource("/resources/bc_logo2.png")).getImage());
+
         
         CardLayout cardLayout = (CardLayout) contentPanel.getLayout();
 contentPanel.add(DashboardPanel, "dashboard");
