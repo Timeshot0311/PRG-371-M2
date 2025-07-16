@@ -9,6 +9,8 @@ import java.io.ObjectOutputStream;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.awt.CardLayout;
+
 
 /**
  *
@@ -23,6 +25,14 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
+        
+        CardLayout cardLayout = (CardLayout) contentPanel.getLayout();
+contentPanel.add(DashboardPanel, "dashboard");
+contentPanel.add(AppointmentsPanel, "appointments");
+contentPanel.add(CounselorPanel, "counselors");
+contentPanel.add(FeedbackPanel, "feedback");
+
+        
     }
 
     /**
@@ -34,245 +44,244 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.JPanel jPanel1 = new javax.swing.JPanel();
-        javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
-        txtID = new javax.swing.JTextField();
-        javax.swing.JLabel jLabel2 = new javax.swing.JLabel();
-        txtName = new javax.swing.JTextField();
-        javax.swing.JLabel jLabel3 = new javax.swing.JLabel();
-        txtSurname = new javax.swing.JTextField();
-        javax.swing.JLabel jLabel4 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        javax.swing.JButton btnAdd = new javax.swing.JButton();
-        javax.swing.JButton btnSave = new javax.swing.JButton();
-        javax.swing.JButton btnClear = new javax.swing.JButton();
-        javax.swing.JButton btnExit = new javax.swing.JButton();
-        javax.swing.JButton btnDelete = new javax.swing.JButton();
-        txtCourse = new javax.swing.JTextField();
+        panelSidebar = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        btnDashboard = new javax.swing.JButton();
+        btnAppointments = new javax.swing.JButton();
+        btnCounselors = new javax.swing.JButton();
+        btnFeedback = new javax.swing.JButton();
+        btnExit = new javax.swing.JButton();
+        contentPanel = new javax.swing.JPanel();
+        DashboardPanel = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        AppointmentsPanel = new javax.swing.JPanel();
+        jToggleButton1 = new javax.swing.JToggleButton();
+        CounselorPanel = new javax.swing.JPanel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        FeedbackPanel = new javax.swing.JPanel();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1024, 768));
 
-        jPanel1.setBackground(new java.awt.Color(0, 204, 51));
+        panelSidebar.setBackground(new java.awt.Color(0, 204, 204));
+        panelSidebar.setPreferredSize(new java.awt.Dimension(200, 600));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("Student Number:");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/download__3_-removebg-preview.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
 
-        txtID.addActionListener(new java.awt.event.ActionListener() {
+        btnDashboard.setText("jButton1");
+        btnDashboard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIDActionPerformed(evt);
+                btnDashboardActionPerformed(evt);
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setText("Name:");
-
-        txtName.addActionListener(new java.awt.event.ActionListener() {
+        btnAppointments.setText("jButton2");
+        btnAppointments.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNameActionPerformed(evt);
+                btnAppointmentsActionPerformed(evt);
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setText("Surname:");
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel4.setText("Course:");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Student Number", "Name", "Surname", "Course"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        btnAdd.setText("Add Student");
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+        btnCounselors.setText("jButton3");
+        btnCounselors.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
+                btnCounselorsActionPerformed(evt);
             }
         });
 
-        btnSave.setText("Save Data");
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
+        btnFeedback.setText("jButton4");
+        btnFeedback.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
+                btnFeedbackActionPerformed(evt);
             }
         });
 
-        btnClear.setText("Clear");
-        btnClear.addActionListener(new java.awt.event.ActionListener() {
+        btnExit.setText("jButton5");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClearActionPerformed(evt);
+                btnExitActionPerformed(evt);
             }
         });
 
-        btnExit.setText("Exit");
-
-        btnDelete.setText("Delete");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtID)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtName)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSurname)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCourse, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE))
-                .addGap(135, 135, 135)
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(490, 490, 490)
-                .addComponent(btnAdd)
+        javax.swing.GroupLayout panelSidebarLayout = new javax.swing.GroupLayout(panelSidebar);
+        panelSidebar.setLayout(panelSidebarLayout);
+        panelSidebarLayout.setHorizontalGroup(
+            panelSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSidebarLayout.createSequentialGroup()
+                .addGroup(panelSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelSidebarLayout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addGroup(panelSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnExit)
+                            .addComponent(btnFeedback)
+                            .addComponent(btnCounselors)
+                            .addComponent(btnAppointments)
+                            .addComponent(btnDashboard)))
+                    .addGroup(panelSidebarLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(12, Short.MAX_VALUE))
+        );
+        panelSidebarLayout.setVerticalGroup(
+            panelSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSidebarLayout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnSave)
+                .addComponent(btnDashboard)
                 .addGap(18, 18, 18)
-                .addComponent(btnClear)
+                .addComponent(btnAppointments)
                 .addGap(18, 18, 18)
+                .addComponent(btnCounselors)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnFeedback)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnExit)
-                .addGap(18, 18, 18)
-                .addComponent(btnDelete)
-                .addContainerGap(71, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtSurname, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAdd)
-                    .addComponent(btnSave)
-                    .addComponent(btnClear)
-                    .addComponent(btnExit)
-                    .addComponent(btnDelete))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addGap(0, 3513, Short.MAX_VALUE))
         );
 
-        txtID.getAccessibleContext().setAccessibleDescription("");
+        contentPanel.setBackground(new java.awt.Color(0, 204, 204));
+        contentPanel.setLayout(new java.awt.CardLayout());
+
+        jLabel2.setText("jLabel2");
+
+        javax.swing.GroupLayout DashboardPanelLayout = new javax.swing.GroupLayout(DashboardPanel);
+        DashboardPanel.setLayout(DashboardPanelLayout);
+        DashboardPanelLayout.setHorizontalGroup(
+            DashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DashboardPanelLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(761, Short.MAX_VALUE))
+        );
+        DashboardPanelLayout.setVerticalGroup(
+            DashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DashboardPanelLayout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addComponent(jLabel2)
+                .addContainerGap(3676, Short.MAX_VALUE))
+        );
+
+        contentPanel.add(DashboardPanel, "card2");
+
+        jToggleButton1.setText("jToggleButton1");
+
+        javax.swing.GroupLayout AppointmentsPanelLayout = new javax.swing.GroupLayout(AppointmentsPanel);
+        AppointmentsPanel.setLayout(AppointmentsPanelLayout);
+        AppointmentsPanelLayout.setHorizontalGroup(
+            AppointmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AppointmentsPanelLayout.createSequentialGroup()
+                .addGap(291, 291, 291)
+                .addComponent(jToggleButton1)
+                .addContainerGap(445, Short.MAX_VALUE))
+        );
+        AppointmentsPanelLayout.setVerticalGroup(
+            AppointmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AppointmentsPanelLayout.createSequentialGroup()
+                .addGap(83, 83, 83)
+                .addComponent(jToggleButton1)
+                .addContainerGap(3644, Short.MAX_VALUE))
+        );
+
+        contentPanel.add(AppointmentsPanel, "card3");
+
+        jRadioButton1.setText("jRadioButton1");
+
+        javax.swing.GroupLayout CounselorPanelLayout = new javax.swing.GroupLayout(CounselorPanel);
+        CounselorPanel.setLayout(CounselorPanelLayout);
+        CounselorPanelLayout.setHorizontalGroup(
+            CounselorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CounselorPanelLayout.createSequentialGroup()
+                .addGap(282, 282, 282)
+                .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(468, Short.MAX_VALUE))
+        );
+        CounselorPanelLayout.setVerticalGroup(
+            CounselorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CounselorPanelLayout.createSequentialGroup()
+                .addGap(84, 84, 84)
+                .addComponent(jRadioButton1)
+                .addContainerGap(3645, Short.MAX_VALUE))
+        );
+
+        contentPanel.add(CounselorPanel, "card4");
+
+        jTextField1.setText("jTextField1");
+
+        javax.swing.GroupLayout FeedbackPanelLayout = new javax.swing.GroupLayout(FeedbackPanel);
+        FeedbackPanel.setLayout(FeedbackPanelLayout);
+        FeedbackPanelLayout.setHorizontalGroup(
+            FeedbackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FeedbackPanelLayout.createSequentialGroup()
+                .addGap(239, 239, 239)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(538, Short.MAX_VALUE))
+        );
+        FeedbackPanelLayout.setVerticalGroup(
+            FeedbackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FeedbackPanelLayout.createSequentialGroup()
+                .addGap(87, 87, 87)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(3641, Short.MAX_VALUE))
+        );
+
+        contentPanel.add(FeedbackPanel, "card5");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panelSidebar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(contentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 848, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(panelSidebar, javax.swing.GroupLayout.PREFERRED_SIZE, 3836, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(92, 92, 92))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
+    private void btnDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboardActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtIDActionPerformed
+        CardLayout cardLayout = (CardLayout) contentPanel.getLayout();
+    cardLayout.show(contentPanel, "dashboard");
+    }//GEN-LAST:event_btnDashboardActionPerformed
 
-    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+    private void btnAppointmentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAppointmentsActionPerformed
         // TODO add your handling code here:
-        txtID.setText("");
-        txtName.setText("");
-        txtSurname.setText("");
-        txtCourse.setText("");
-        
-    }//GEN-LAST:event_btnClearActionPerformed
+        CardLayout cardLayout = (CardLayout) contentPanel.getLayout();
+    cardLayout.show(contentPanel, "appointments");
+    }//GEN-LAST:event_btnAppointmentsActionPerformed
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+    private void btnCounselorsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCounselorsActionPerformed
         // TODO add your handling code here:
-        String id = txtID.getText();
-        String name = txtName.getText();
-        String surname = txtSurname.getText();
-        String course = txtCourse.getText();
-        
-        if(id.isEmpty() || name.isEmpty() || surname.isEmpty() || course.isEmpty())
-        {
-            JOptionPane.showMessageDialog(this, "Please enter all fields", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        else{
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-            model.addRow(new Object[]{id, name, surname, course});
-            
-            txtID.setText("");
-            txtName.setText("");
-            txtSurname.setText("");
-            txtCourse.setText("");
-        }
-    }//GEN-LAST:event_btnAddActionPerformed
+        CardLayout cardLayout = (CardLayout) contentPanel.getLayout();
+    cardLayout.show(contentPanel, "counselors");
+    }//GEN-LAST:event_btnCounselorsActionPerformed
 
-    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+    private void btnFeedbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFeedbackActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNameActionPerformed
+        CardLayout cardLayout = (CardLayout) contentPanel.getLayout();
+    cardLayout.show(contentPanel, "feedback");
+    }//GEN-LAST:event_btnFeedbackActionPerformed
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // TODO add your handling code here:
-        int row = jTable1.getSelectedRow();
-        
-        if(row < 0)
-        {
-            JOptionPane.showMessageDialog(this, "No row selected", "Seelect Row", JOptionPane.ERROR_MESSAGE);
-        }
-        else{
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-            model.removeRow(row);
-        }
-    }//GEN-LAST:event_btnDeleteActionPerformed
-
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        Vector<Vector> tableData = model.getDataVector();
-        
-        try{
-            FileOutputStream file = new FileOutputStream("file.bin");
-            ObjectOutputStream output = new ObjectOutputStream(file);
-            
-            output.writeObject(tableData);
-            output.close();
-            file.close();
-            
-            JOptionPane.showMessageDialog(this, "Data Written to File", "Successful Write", JOptionPane.ERROR_MESSAGE);
-        }catch(Exception ex)
-        {
-            ex.printStackTrace();
-        }
-    }//GEN-LAST:event_btnSaveActionPerformed
+         System.exit(0);
+    }//GEN-LAST:event_btnExitActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -301,11 +310,21 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtCourse;
-    private javax.swing.JTextField txtID;
-    private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtSurname;
+    private javax.swing.JPanel AppointmentsPanel;
+    private javax.swing.JPanel CounselorPanel;
+    private javax.swing.JPanel DashboardPanel;
+    private javax.swing.JPanel FeedbackPanel;
+    private javax.swing.JButton btnAppointments;
+    private javax.swing.JButton btnCounselors;
+    private javax.swing.JButton btnDashboard;
+    private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnFeedback;
+    private javax.swing.JPanel contentPanel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JPanel panelSidebar;
     // End of variables declaration//GEN-END:variables
 }
