@@ -8,47 +8,80 @@ package models;
  *
  * @author Suhil Jugroop
  */
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public class Appointment {
+
+    //variables
     private int id;
-    private String studentName;
-    private String counselorName;
-    private String date;
-    private String time;
-    private String status;
-
-    // Constructor with ID (used when reading from DB)
-    public Appointment(int id, String studentName, String counselorName, String date, String time, String status) {
+    private String StudentName;
+    private String Counselorname;
+    private LocalDate Appointmentdate;
+    private LocalTime AppointmentTime;
+    private String Status;
+    
+    //Constructor
+    public Appointment(int id, String StudentName, String Counselorname, LocalDate Appointmentdate, LocalTime AppointmentTime, String Status) {
         this.id = id;
-        this.studentName = studentName;
-        this.counselorName = counselorName;
-        this.date = date;
-        this.time = time;
-        this.status = status;
+        this.StudentName = StudentName;
+        this.Counselorname = Counselorname;
+        this.Appointmentdate = Appointmentdate;
+        this.AppointmentTime = AppointmentTime;
+        this.Status = Status;
+    }
+    
+    //Default constructor for objrct instance creation
+    public Appointment(){}
+    
+    //Encapsulation-get and set methods
+        public int getId() {
+        return id;
     }
 
-    // Constructor without ID (used when creating new records)
-    public Appointment(String studentName, String counselorName, String date, String time, String status) {
-        this.studentName = studentName;
-        this.counselorName = counselorName;
-        this.date = date;
-        this.time = time;
-        this.status = status;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    // Getters
-    public int getId() { return id; }
-    public String getStudentName() { return studentName; }
-    public String getCounselorName() { return counselorName; }
-    public String getDate() { return date; }
-    public String getTime() { return time; }
-    public String getStatus() { return status; }
+    public String getStudentName() {
+        return StudentName;
+    }
 
-    // Setters
-    public void setId(int id) { this.id = id; }
-    public void setStudentName(String studentName) { this.studentName = studentName; }
-    public void setCounselorName(String counselorName) { this.counselorName = counselorName; }
-    public void setDate(String date) { this.date = date; }
-    public void setTime(String time) { this.time = time; }
-    public void setStatus(String status) { this.status = status; }
+    public void setStudentName(String StudentName) {
+        this.StudentName = StudentName;
+    }
+
+    public String getCounselorname() {
+        return Counselorname;
+    }
+
+    public void setCounselorname(String Counselorname) {
+        this.Counselorname = Counselorname;
+    }
+
+    public LocalDate getAppointmentdate() {
+        return Appointmentdate;
+    }
+
+    public void setAppointmentdate(LocalDate Appointmentdate) {
+        this.Appointmentdate = Appointmentdate;
+    }
+
+    public LocalTime getAppointmentTime() {
+        return AppointmentTime;
+    }
+
+    public void setAppointmentTime(LocalTime AppointmentTime) {
+        this.AppointmentTime = AppointmentTime;
+    }
+
+    public String getStatus() {
+        return Status;
+    }
+    
+    public void setStatus(String Status) {
+        this.Status = Status;
+    }
+    
     
 }

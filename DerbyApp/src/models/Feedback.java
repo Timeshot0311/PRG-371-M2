@@ -1,35 +1,67 @@
 package models;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
-public class Feedback {
-    private int id;
-    private String studentName;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
+/**
+ *
+ * @author Suhil Jugroop
+ */
+public class Feedback{
+    
+    private DefaultTableModel tableModel;
+    private JTable table;
     private int rating;
     private String comments;
 
-    // Constructor with ID (used when reading from DB)
-    public Feedback(int id, String studentName, int rating, String comments) {
-        this.id = id;
-        this.studentName = studentName;
-        this.rating = rating;
-        this.comments = comments;
+    public Feedback(DefaultTableModel tableModel, JTable table) {
+        this.tableModel = tableModel;
+        this.table = table;
     }
 
-    // Constructor without ID (used when creating new records)
-    public Feedback(String studentName, int rating, String comments) {
-        this.studentName = studentName;
+    public void setFeedbackData(int rating, String comments) {
+        if (rating < 1 || rating > 5) {
+            throw new IllegalArgumentException("Rating must be between 1 and 5");
+        }
         this.rating = rating;
-        this.comments = comments;
+        this.comments = comments != null ? comments.trim() : "";
     }
 
-    // Getters
-    public int getId() { return id; }
-    public String getStudentName() { return studentName; }
-    public int getRating() { return rating; }
-    public String getComments() { return comments; }
+    public void addData() {
+        Object[] rowData = {rating, comments};
+        tableModel.addRow(rowData);
+    }
 
-    // Setters
-    public void setId(int id) { this.id = id; }
-    public void setStudentName(String studentName) { this.studentName = studentName; }
-    public void setRating(int rating) { this.rating = rating; }
-    public void setComments(String comments) { this.comments = comments; }
+    public void removeData(int row) {
+        if (row >= 0 && row < tableModel.getRowCount()) {
+            tableModel.removeRow(row);
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a valid row to delete.");
+        }
+    }
+
+    public void updateData(int row) {
+        if (row >= 0 && row < tableModel.getRowCount()) {
+            tableModel.setValueAt(rating, row, 0);
+            tableModel.setValueAt(comments, row, 1);
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a valid row to update.");
+        }
+    }
+
+    public Object[] getFeedbackData(int row) {
+        if (row >= 0 && row < tableModel.getRowCount()) {
+            return new Object[] {
+                tableModel.getValueAt(row, 0),
+                tableModel.getValueAt(row, 1)
+            };
+        }
+        return null;
+    }
+    
 }
