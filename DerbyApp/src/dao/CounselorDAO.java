@@ -9,37 +9,18 @@ import java.util.List;
 
 public class CounselorDAO {
 
-    public CounselorDAO() {
-        createTable();
-    }
+    private final Connection conn;
 
-    private void createTable() {
-        String sql = "CREATE TABLE Counselors ("
-                   + "id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY, "
-                   + "name VARCHAR(100), "
-                   + "department VARCHAR(100), "
-                   + "email VARCHAR(100))";
-
-        try (Connection conn = DBConnection.getConnection();
-             Statement stmt = conn.createStatement()) {
-            stmt.execute(sql);
-        } catch (SQLException e) {
-            if (!"X0Y32".equals(e.getSQLState())) {
-                System.err.println("Error creating Counselors table: " + e.getMessage());
-            }
-        }
+    public CounselorDAO(DBConnection db) {
+        this.conn = db.getConnection();
     }
 
     public void addCounselor(Counselor counselor) {
-        String sql = "INSERT INTO Counselors (name, department, email) VALUES (?, ?, ?)";
-
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
+        String sql = "INSERT INTO Counselors (name, specialization, email) VALUES (?, ?, ?)";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, counselor.getName());
-            stmt.setString(2, counselor.getDepartment());
+            stmt.setString(2, counselor.getSpecialization());
             stmt.setString(3, counselor.getEmail());
-
             stmt.executeUpdate();
             System.out.println("Counselor added.");
         } catch (SQLException e) {
@@ -50,37 +31,29 @@ public class CounselorDAO {
     public List<Counselor> getAllCounselors() {
         List<Counselor> list = new ArrayList<>();
         String sql = "SELECT * FROM Counselors";
-
-        try (Connection conn = DBConnection.getConnection();
-             Statement stmt = conn.createStatement();
+        try (Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
-
             while (rs.next()) {
                 list.add(new Counselor(
                         rs.getInt("id"),
                         rs.getString("name"),
-                        rs.getString("department"),
+                        rs.getString("specialization"),
                         rs.getString("email")
                 ));
             }
         } catch (SQLException e) {
             System.err.println("Fetch failed: " + e.getMessage());
         }
-
         return list;
     }
 
     public void updateCounselor(Counselor counselor) {
-        String sql = "UPDATE Counselors SET name = ?, department = ?, email = ? WHERE id = ?";
-
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
+        String sql = "UPDATE Counselors SET name = ?, specialization = ?, email = ? WHERE id = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, counselor.getName());
-            stmt.setString(2, counselor.getDepartment());
+            stmt.setString(2, counselor.getSpecialization());
             stmt.setString(3, counselor.getEmail());
             stmt.setInt(4, counselor.getId());
-
             stmt.executeUpdate();
             System.out.println("Counselor updated.");
         } catch (SQLException e) {
@@ -90,10 +63,7 @@ public class CounselorDAO {
 
     public void deleteCounselor(int id) {
         String sql = "DELETE FROM Counselors WHERE id = ?";
-
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             stmt.executeUpdate();
             System.out.println("Counselor deleted.");

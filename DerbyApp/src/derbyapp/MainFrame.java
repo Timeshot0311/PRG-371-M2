@@ -4,14 +4,26 @@
  */
 package derbyapp;
 
+import controllers.AppointmentController;
+import controllers.CounselorController;
+import controllers.FeedbackController;
+import dao.AppointmentDAO;
+import dao.CounselorDAO;
+import dao.FeedbackDAO;
+import database.DBConnection;
+import models.Appointment;
+import models.Counselor;
+import models.Feedback;
+
+import java.awt.CardLayout;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
+import java.util.List;
 import java.util.Vector;
+
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import java.awt.CardLayout;
-import javax.swing.ImageIcon;
-
 
 
 /**
@@ -21,6 +33,143 @@ import javax.swing.ImageIcon;
 public class MainFrame extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MainFrame.class.getName());
+    
+    private final DBConnection db;
+private final AppointmentController appointmentController;
+private final CounselorController counselorController;
+private final FeedbackController feedbackController;
+
+private void loadAppointmentsTable() {
+    List<Appointment> appointments = appointmentController.getAllAppointments();
+    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+    model.setRowCount(0); // clear table
+    for (Appointment appt : appointments) {
+        model.addRow(new Object[]{
+            appt.getId(),
+            appt.getStudentName(),
+            appt.getCounselorName(),
+            appt.getDate(),
+            appt.getTime(),
+            appt.getStatus()
+        });
+    }
+}
+
+private void loadFeedbackTable() {
+    List<Feedback> feedbackList = feedbackController.getAllFeedback();
+    DefaultTableModel model = (DefaultTableModel) tableFeedback.getModel();
+    model.setRowCount(0); // clear table
+
+    for (Feedback f : feedbackList) {
+        model.addRow(new Object[]{
+            f.getId(),
+            f.getStudentName(),
+            f.getRating(),
+            f.getComments()
+        });
+    }
+}
+
+private void clearFeedbackFields() {
+    txtStudentFeedback.setText("");
+    comboRating.setSelectedIndex(0);
+    txtComments.setText("");
+}
+
+private boolean validateFeedbackForm() {
+    if (txtStudentFeedback.getText().trim().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Student name is required.");
+        return false;
+    }
+    if (comboRating.getSelectedIndex() == -1) {
+        JOptionPane.showMessageDialog(this, "Please select a rating.");
+        return false;
+    }
+    if (txtComments.getText().trim().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Comments are required.");
+        return false;
+    }
+    return true;
+}
+
+
+
+private void clearAppointmentFields() {
+    txtStudentName.setText("");
+    comboCounselor.setSelectedIndex(0);
+    txtDate.setText("");
+    txtTime.setText("");
+    comboStatus.setSelectedIndex(0);
+}
+
+private boolean validateAppointmentForm() {
+    if (txtStudentName.getText().trim().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Student name is required.");
+        return false;
+    }
+    if (comboCounselor.getSelectedIndex() == -1) {
+        JOptionPane.showMessageDialog(this, "Please select a counselor.");
+        return false;
+    }
+    if (txtDate.getText().trim().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Date is required.");
+        return false;
+    }
+    if (txtTime.getText().trim().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Time is required.");
+        return false;
+    }
+    if (comboStatus.getSelectedIndex() == -1) {
+        JOptionPane.showMessageDialog(this, "Please select a status.");
+        return false;
+    }
+    return true;
+}
+
+
+private void clearCounselorFields() {
+    txtCounselorName.setText("");
+    txtSpecialization.setText("");
+    comboAvailability.setSelectedIndex(0);
+    txtEmail.setText("");
+}
+
+private boolean validateCounselorForm() {
+    if (txtCounselorName.getText().trim().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Counselor name is required.");
+        return false;
+    }
+    if (txtSpecialization.getText().trim().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Specialization is required.");
+        return false;
+    }
+    if (txtEmail.getText().trim().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Email is required.");
+        return false;
+    }
+    // Basic email validation (optional)
+    
+    return true;
+}
+
+
+private void loadCounselorsTable() {
+    List<Counselor> counselors = counselorController.getAllCounselors();
+    DefaultTableModel model = (DefaultTableModel) tableCounselors.getModel();
+    model.setRowCount(0); // Clear
+    for (Counselor c : counselors) {
+        model.addRow(new Object[]{
+            c.getId(),
+            c.getName(),
+            c.getSpecialization(),
+            
+            c.getEmail()
+        });
+    }
+}
+
+
+
 
     /**
      * Creates new form MainFrame
@@ -28,7 +177,14 @@ public class MainFrame extends javax.swing.JFrame {
     public MainFrame() {
         initComponents();
         
+        
         setIconImage(new ImageIcon(getClass().getResource("/resources/bc_logo2.png")).getImage());
+        
+        // DB + Controller setup
+    db = new DBConnection();
+    appointmentController = new AppointmentController(db);
+    counselorController = new CounselorController(db);
+    feedbackController = new FeedbackController(db);
 
         
         CardLayout cardLayout = (CardLayout) contentPanel.getLayout();
@@ -76,6 +232,7 @@ contentPanel.add(FeedbackPanel, "feedback");
         btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
+        btnViewAllAppointments = new javax.swing.JButton();
         CounselorPanel = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         txtCounselorName = new javax.swing.JTextField();
@@ -88,6 +245,9 @@ contentPanel.add(FeedbackPanel, "feedback");
         btnAdd2 = new javax.swing.JButton();
         btnUpdate2 = new javax.swing.JButton();
         btnDelete2 = new javax.swing.JButton();
+        txtEmail = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        btnViewCounselors = new javax.swing.JButton();
         FeedbackPanel = new javax.swing.JPanel();
         txtStudentFeedback = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
@@ -101,6 +261,7 @@ contentPanel.add(FeedbackPanel, "feedback");
         txtAdd3 = new javax.swing.JButton();
         txtUpdate3 = new javax.swing.JButton();
         txtDelete3 = new javax.swing.JButton();
+        btnViewFeedback = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1024, 768));
@@ -264,8 +425,25 @@ contentPanel.add(FeedbackPanel, "feedback");
         });
 
         btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
+        btnViewAllAppointments.setText("View All Appointments");
+        btnViewAllAppointments.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewAllAppointmentsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout AppointmentsPanelLayout = new javax.swing.GroupLayout(AppointmentsPanel);
         AppointmentsPanel.setLayout(AppointmentsPanelLayout);
@@ -296,7 +474,9 @@ contentPanel.add(FeedbackPanel, "feedback");
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnUpdate)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnDelete)))
+                        .addComponent(btnDelete)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnViewAllAppointments)))
                 .addContainerGap(136, Short.MAX_VALUE))
         );
         AppointmentsPanelLayout.setVerticalGroup(
@@ -329,7 +509,8 @@ contentPanel.add(FeedbackPanel, "feedback");
                 .addGroup(AppointmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdd)
                     .addComponent(btnUpdate)
-                    .addComponent(btnDelete))
+                    .addComponent(btnDelete)
+                    .addComponent(btnViewAllAppointments))
                 .addGap(0, 3288, Short.MAX_VALUE))
         );
 
@@ -366,11 +547,35 @@ contentPanel.add(FeedbackPanel, "feedback");
         });
         jScrollPane2.setViewportView(tableCounselors);
 
-        btnAdd2.setText("jButton1");
+        btnAdd2.setText("Add");
+        btnAdd2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdd2ActionPerformed(evt);
+            }
+        });
 
-        btnUpdate2.setText("jButton2");
+        btnUpdate2.setText("Update");
+        btnUpdate2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdate2ActionPerformed(evt);
+            }
+        });
 
-        btnDelete2.setText("jButton3");
+        btnDelete2.setText("Delete");
+        btnDelete2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDelete2ActionPerformed(evt);
+            }
+        });
+
+        jLabel15.setText("Availability");
+
+        btnViewCounselors.setText("View All Counselors");
+        btnViewCounselors.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewCounselorsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout CounselorPanelLayout = new javax.swing.GroupLayout(CounselorPanel);
         CounselorPanel.setLayout(CounselorPanelLayout);
@@ -379,15 +584,19 @@ contentPanel.add(FeedbackPanel, "feedback");
             .addGroup(CounselorPanelLayout.createSequentialGroup()
                 .addGroup(CounselorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(CounselorPanelLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(CounselorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCounselorName, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtSpecialization, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboAvailability, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9))
-                        .addGap(32, 32, 32)
+                            .addGroup(CounselorPanelLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(CounselorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCounselorName, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtSpecialization, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel9)
+                                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel15)))
+                            .addComponent(comboAvailability, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(38, 38, 38)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 633, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(CounselorPanelLayout.createSequentialGroup()
                         .addGap(136, 136, 136)
@@ -395,7 +604,9 @@ contentPanel.add(FeedbackPanel, "feedback");
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnUpdate2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnDelete2)))
+                        .addComponent(btnDelete2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnViewCounselors)))
                 .addContainerGap(202, Short.MAX_VALUE))
         );
         CounselorPanelLayout.setVerticalGroup(
@@ -412,15 +623,20 @@ contentPanel.add(FeedbackPanel, "feedback");
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtSpecialization, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(7, 7, 7)
+                        .addComponent(jLabel15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(comboAvailability, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(CounselorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdd2)
                     .addComponent(btnUpdate2)
-                    .addComponent(btnDelete2))
+                    .addComponent(btnDelete2)
+                    .addComponent(btnViewCounselors))
                 .addContainerGap(3288, Short.MAX_VALUE))
         );
 
@@ -459,13 +675,40 @@ contentPanel.add(FeedbackPanel, "feedback");
                 return canEdit [columnIndex];
             }
         });
+        tableFeedback.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableFeedbackMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(tableFeedback);
 
         txtAdd3.setText("Submit");
+        txtAdd3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAdd3ActionPerformed(evt);
+            }
+        });
 
         txtUpdate3.setText("Update");
+        txtUpdate3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUpdate3ActionPerformed(evt);
+            }
+        });
 
         txtDelete3.setText("Delete");
+        txtDelete3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDelete3ActionPerformed(evt);
+            }
+        });
+
+        btnViewFeedback.setText("View Feedback");
+        btnViewFeedback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewFeedbackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout FeedbackPanelLayout = new javax.swing.GroupLayout(FeedbackPanel);
         FeedbackPanel.setLayout(FeedbackPanelLayout);
@@ -488,6 +731,8 @@ contentPanel.add(FeedbackPanel, "feedback");
                         .addComponent(txtUpdate3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtDelete3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnViewFeedback)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE))
                 .addContainerGap())
@@ -514,7 +759,8 @@ contentPanel.add(FeedbackPanel, "feedback");
                 .addGroup(FeedbackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtAdd3)
                     .addComponent(txtUpdate3)
-                    .addComponent(txtDelete3))
+                    .addComponent(txtDelete3)
+                    .addComponent(btnViewFeedback))
                 .addContainerGap(3288, Short.MAX_VALUE))
         );
 
@@ -577,8 +823,241 @@ contentPanel.add(FeedbackPanel, "feedback");
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
+        if (!validateAppointmentForm()) return;
+        String studentName = txtStudentName.getText().trim();
+    String counselor = (String) comboCounselor.getSelectedItem();
+    String date = txtDate.getText().trim();
+    String time = txtTime.getText().trim();
+    String status = (String) comboStatus.getSelectedItem();
+
+    if (studentName.isEmpty() || counselor == null || date.isEmpty() || time.isEmpty() || status == null) {
+        JOptionPane.showMessageDialog(this, "Please fill in all fields.");
+        return;
+    }
+
+    appointmentController.addAppointment(studentName, counselor, date, time, status);
+    JOptionPane.showMessageDialog(this, "Appointment added successfully.");
+    loadAppointmentsTable();
+    clearAppointmentFields();
+
     }//GEN-LAST:event_btnAddActionPerformed
 
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+         if (!validateAppointmentForm()) return;
+    int selectedRow = jTable1.getSelectedRow();
+    if (selectedRow == -1) {
+        JOptionPane.showMessageDialog(this, "Please select an appointment to update.");
+        return;
+    }
+
+    int id = (int) jTable1.getValueAt(selectedRow, 0);
+    
+    String studentName = txtStudentName.getText().trim();
+    String counselor = (String) comboCounselor.getSelectedItem();
+    String date = txtDate.getText().trim();
+    String time = txtTime.getText().trim();
+    String status = (String) comboStatus.getSelectedItem();
+
+    
+
+    appointmentController.updateAppointment(id, studentName, counselor, date, time, status);
+    JOptionPane.showMessageDialog(this, "Appointment updated successfully.");
+    loadAppointmentsTable();
+    clearAppointmentFields();
+   
+
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = jTable1.getSelectedRow();
+    if (selectedRow == -1) {
+        JOptionPane.showMessageDialog(this, "Please select an appointment to delete.");
+        return;
+    }
+
+    int id = (int) jTable1.getValueAt(selectedRow, 0);
+
+    int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this appointment?", "Confirm", JOptionPane.YES_NO_OPTION);
+    if (confirm == JOptionPane.YES_OPTION) {
+        appointmentController.deleteAppointment(id);
+        JOptionPane.showMessageDialog(this, "Appointment deleted.");
+        loadAppointmentsTable();
+        clearAppointmentFields();
+    }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnAdd2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd2ActionPerformed
+        // TODO add your handling code here:
+        if (!validateCounselorForm()) return;
+        String name = txtCounselorName.getText().trim();
+    String specialization = txtSpecialization.getText().trim();
+    String availability = (String) comboAvailability.getSelectedItem();
+    String email = txtEmail.getText().trim();
+
+    if (name.isEmpty() || specialization.isEmpty() || availability == null || email.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please fill in all fields.");
+        return;
+    }
+
+    counselorController.addCounselor(name, specialization, email);
+    JOptionPane.showMessageDialog(this, "Counselor added.");
+    loadCounselorsTable();
+    clearCounselorFields();
+    
+
+    }//GEN-LAST:event_btnAdd2ActionPerformed
+
+    private void btnUpdate2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdate2ActionPerformed
+        // TODO add your handling code here:
+        if (!validateCounselorForm()) return;
+        int selectedRow = tableCounselors.getSelectedRow();
+    if (selectedRow == -1) {
+        JOptionPane.showMessageDialog(this, "Select a counselor to update.");
+        return;
+    }
+
+    int id = (int) tableCounselors.getValueAt(selectedRow, 0);
+
+    String name = txtCounselorName.getText().trim();
+    String specialization = txtSpecialization.getText().trim();
+    String availability = (String) comboAvailability.getSelectedItem();
+    String email = txtEmail.getText().trim();
+
+    if (name.isEmpty() || specialization.isEmpty() || availability == null || email.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please fill in all fields.");
+        return;
+    }
+
+    counselorController.updateCounselor(id, name, specialization, email);
+    JOptionPane.showMessageDialog(this, "Counselor updated.");
+    loadCounselorsTable();
+    clearCounselorFields();
+    
+
+    }//GEN-LAST:event_btnUpdate2ActionPerformed
+
+    private void btnDelete2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelete2ActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = tableCounselors.getSelectedRow();
+    if (selectedRow == -1) {
+        JOptionPane.showMessageDialog(this, "Select a counselor to delete.");
+        return;
+    }
+
+    int id = (int) tableCounselors.getValueAt(selectedRow, 0);
+
+    int confirm = JOptionPane.showConfirmDialog(this, "Are you sure?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
+    if (confirm == JOptionPane.YES_OPTION) {
+        counselorController.deleteCounselor(id);
+        JOptionPane.showMessageDialog(this, "Counselor deleted.");
+        loadCounselorsTable();
+        clearCounselorFields();
+    }
+
+    }//GEN-LAST:event_btnDelete2ActionPerformed
+
+    private void txtAdd3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAdd3ActionPerformed
+        // TODO add your handling code here:
+        if (!validateFeedbackForm()) return;
+        String studentName = txtStudentFeedback.getText().trim();
+    int rating = Integer.parseInt((String) comboRating.getSelectedItem()); // assume Integer items
+    String comments = txtComments.getText().trim();
+
+    if (studentName.isEmpty() || comments.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please fill in all fields.");
+        return;
+    }
+
+    feedbackController.addFeedback(studentName, rating, comments);
+    JOptionPane.showMessageDialog(this, "Feedback submitted.");
+    loadFeedbackTable();
+    clearFeedbackFields();
+    
+
+    }//GEN-LAST:event_txtAdd3ActionPerformed
+
+    
+    
+    private void txtUpdate3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUpdate3ActionPerformed
+        // TODO add your handling code here:
+        if (!validateFeedbackForm()) return;
+        int selectedRow = tableFeedback.getSelectedRow();
+    if (selectedRow == -1) {
+        JOptionPane.showMessageDialog(this, "Please select a feedback entry to update.");
+        return;
+    }
+
+    int id = (int) tableFeedback.getValueAt(selectedRow, 0);
+    String studentName = txtStudentFeedback.getText().trim();
+    int rating = Integer.parseInt((String) comboRating.getSelectedItem());
+    String comments = txtComments.getText().trim();
+
+    if (studentName.isEmpty() || comments.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please fill in all fields.");
+        return;
+    }
+
+    feedbackController.updateFeedback(id, studentName, rating, comments);
+    JOptionPane.showMessageDialog(this, "Feedback updated.");
+    loadFeedbackTable();
+    clearFeedbackFields();
+    
+
+    }//GEN-LAST:event_txtUpdate3ActionPerformed
+
+    private void txtDelete3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDelete3ActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = tableFeedback.getSelectedRow();
+    if (selectedRow == -1) {
+        JOptionPane.showMessageDialog(this, "Select a feedback entry to delete.");
+        return;
+    }
+
+    int id = (int) tableFeedback.getValueAt(selectedRow, 0);
+
+    int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this feedback?", "Confirm", JOptionPane.YES_NO_OPTION);
+    if (confirm == JOptionPane.YES_OPTION) {
+        feedbackController.deleteFeedback(id);
+        JOptionPane.showMessageDialog(this, "Feedback deleted.");
+        loadFeedbackTable();
+        clearFeedbackFields();
+    }
+    }//GEN-LAST:event_txtDelete3ActionPerformed
+
+    private void tableFeedbackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableFeedbackMouseClicked
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_tableFeedbackMouseClicked
+
+    private void btnViewFeedbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewFeedbackActionPerformed
+        // TODO add your handling code here:
+        loadFeedbackTable();
+
+    CardLayout cardLayout = (CardLayout) contentPanel.getLayout();
+    cardLayout.show(contentPanel, "feedback");
+    }//GEN-LAST:event_btnViewFeedbackActionPerformed
+
+    private void btnViewCounselorsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewCounselorsActionPerformed
+        // TODO add your handling code here:
+        loadCounselorsTable();
+        
+
+    CardLayout cardLayout = (CardLayout) contentPanel.getLayout();
+    cardLayout.show(contentPanel, "counselors");
+    }//GEN-LAST:event_btnViewCounselorsActionPerformed
+
+    private void btnViewAllAppointmentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewAllAppointmentsActionPerformed
+        // TODO add your handling code here:
+        loadAppointmentsTable();
+
+    // If needed, switch to the panel
+    CardLayout cardLayout = (CardLayout) contentPanel.getLayout();
+    cardLayout.show(contentPanel, "appointments");
+    }//GEN-LAST:event_btnViewAllAppointmentsActionPerformed
+
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -621,6 +1100,9 @@ contentPanel.add(FeedbackPanel, "feedback");
     private javax.swing.JButton btnFeedback;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnUpdate2;
+    private javax.swing.JButton btnViewAllAppointments;
+    private javax.swing.JButton btnViewCounselors;
+    private javax.swing.JButton btnViewFeedback;
     private javax.swing.JComboBox<String> comboAvailability;
     private javax.swing.JComboBox<String> comboCounselor;
     private javax.swing.JComboBox<String> comboRating;
@@ -632,6 +1114,7 @@ contentPanel.add(FeedbackPanel, "feedback");
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -653,6 +1136,7 @@ contentPanel.add(FeedbackPanel, "feedback");
     private javax.swing.JTextField txtCounselorName;
     private javax.swing.JTextField txtDate;
     private javax.swing.JButton txtDelete3;
+    private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtSpecialization;
     private javax.swing.JTextField txtStudentFeedback;
     private javax.swing.JTextField txtStudentName;

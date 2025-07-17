@@ -2,14 +2,15 @@ package controllers;
 
 import dao.FeedbackDAO;
 import models.Feedback;
+import database.DBConnection;
 import java.util.List;
 
 public class FeedbackController {
 
     private final FeedbackDAO feedbackDAO;
 
-    public FeedbackController() {
-        feedbackDAO = new FeedbackDAO();
+    public FeedbackController(DBConnection db) {
+        this.feedbackDAO = new FeedbackDAO(db);
     }
 
     public void addFeedback(String studentName, int rating, String comments) {

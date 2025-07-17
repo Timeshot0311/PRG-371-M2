@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dao;
 
 import models.Appointment;
@@ -11,45 +7,22 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author Suhil Jugroop
- */
 public class AppointmentDAO {
-    public AppointmentDAO() {
-        createTable();
-    }
 
-    private void createTable() {
-        String sql = "CREATE TABLE Appointments ("
-                   + "id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY, "
-                   + "studentName VARCHAR(100), "
-                   + "counselorName VARCHAR(100), "
-                   + "date VARCHAR(20), "
-                   + "time VARCHAR(20), "
-                   + "status VARCHAR(20))";
+    private final Connection conn;
 
-        try (Connection conn = DBConnection.getConnection();
-             Statement stmt = conn.createStatement()) {
-            stmt.execute(sql);
-        } catch (SQLException e) {
-            if (!"X0Y32".equals(e.getSQLState())) {
-                System.err.println("Error creating Appointments table: " + e.getMessage());
-            }
-        }
+    public AppointmentDAO(DBConnection db) {
+        this.conn = db.getConnection();
     }
 
     public void addAppointment(Appointment appointment) {
         String sql = "INSERT INTO Appointments (studentName, counselorName, date, time, status) VALUES (?, ?, ?, ?, ?)";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, appointment.getStudentName());
             stmt.setString(2, appointment.getCounselorName());
             stmt.setString(3, appointment.getDate());
             stmt.setString(4, appointment.getTime());
             stmt.setString(5, appointment.getStatus());
-
             stmt.executeUpdate();
             System.out.println("Appointment added.");
         } catch (SQLException e) {
@@ -60,9 +33,7 @@ public class AppointmentDAO {
     public List<Appointment> getAllAppointments() {
         List<Appointment> list = new ArrayList<>();
         String sql = "SELECT * FROM Appointments";
-
-        try (Connection conn = DBConnection.getConnection();
-             Statement stmt = conn.createStatement();
+        try (Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
@@ -78,23 +49,18 @@ public class AppointmentDAO {
         } catch (SQLException e) {
             System.err.println("Select failed: " + e.getMessage());
         }
-
         return list;
     }
 
     public void updateAppointment(Appointment appointment) {
         String sql = "UPDATE Appointments SET studentName = ?, counselorName = ?, date = ?, time = ?, status = ? WHERE id = ?";
-
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, appointment.getStudentName());
             stmt.setString(2, appointment.getCounselorName());
             stmt.setString(3, appointment.getDate());
             stmt.setString(4, appointment.getTime());
             stmt.setString(5, appointment.getStatus());
             stmt.setInt(6, appointment.getId());
-
             stmt.executeUpdate();
             System.out.println("Appointment updated.");
         } catch (SQLException e) {
@@ -104,10 +70,7 @@ public class AppointmentDAO {
 
     public void deleteAppointment(int id) {
         String sql = "DELETE FROM Appointments WHERE id = ?";
-
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             stmt.executeUpdate();
             System.out.println("Appointment deleted.");

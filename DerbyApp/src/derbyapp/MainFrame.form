@@ -274,6 +274,8 @@
                               <Component id="btnUpdate" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnDelete" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btnViewAllAppointments" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="136" max="32767" attributes="0"/>
@@ -312,6 +314,7 @@
                           <Component id="btnAdd" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnUpdate" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnDelete" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnViewAllAppointments" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="3288" max="32767" attributes="0"/>
                   </Group>
@@ -415,11 +418,25 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Update"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpdateActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnDelete">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Delete"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnViewAllAppointments">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="View All Appointments"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnViewAllAppointmentsActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -441,16 +458,22 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel8" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
-                                  <Component id="txtCounselorName" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
-                                  <Component id="txtSpecialization" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
-                                  <Component id="jLabel10" alignment="0" min="-2" pref="43" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel8" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
+                                          <Component id="txtCounselorName" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
+                                          <Component id="txtSpecialization" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
+                                          <Component id="jLabel10" alignment="0" min="-2" pref="43" max="-2" attributes="0"/>
+                                          <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtEmail" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
+                                          <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                                   <Component id="comboAvailability" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                               <Component id="jScrollPane2" min="-2" pref="633" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -460,6 +483,8 @@
                               <Component id="btnUpdate2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnDelete2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btnViewCounselors" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="202" max="32767" attributes="0"/>
@@ -480,9 +505,13 @@
                               <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="txtSpecialization" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                              <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtEmail" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="comboAvailability" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -491,6 +520,7 @@
                           <Component id="btnAdd2" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnUpdate2" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnDelete2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnViewCounselors" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="3288" max="32767" attributes="0"/>
                   </Group>
@@ -553,18 +583,42 @@
             </Container>
             <Component class="javax.swing.JButton" name="btnAdd2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="jButton1"/>
+                <Property name="text" type="java.lang.String" value="Add"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdd2ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnUpdate2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="jButton2"/>
+                <Property name="text" type="java.lang.String" value="Update"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpdate2ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnDelete2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="jButton3"/>
+                <Property name="text" type="java.lang.String" value="Delete"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDelete2ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtEmail">
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel15">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Availability"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnViewCounselors">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="View All Counselors"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnViewCounselorsActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -601,6 +655,8 @@
                               <Component id="txtUpdate3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="txtDelete3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btnViewFeedback" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane4" pref="699" max="32767" attributes="0"/>
@@ -634,6 +690,7 @@
                           <Component id="txtAdd3" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtUpdate3" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtDelete3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnViewFeedback" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="3288" max="32767" attributes="0"/>
                   </Group>
@@ -708,6 +765,9 @@
                       </Table>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tableFeedbackMouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -715,16 +775,33 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Submit"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtAdd3ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="txtUpdate3">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Update"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtUpdate3ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="txtDelete3">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Delete"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDelete3ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnViewFeedback">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="View Feedback"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnViewFeedbackActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

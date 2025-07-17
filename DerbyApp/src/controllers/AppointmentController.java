@@ -1,21 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package controllers;
+
 import dao.AppointmentDAO;
 import models.Appointment;
+import database.DBConnection;
 import java.util.List;
 
-/**
- *
- * @author Suhil Jugroop
- */
 public class AppointmentController {
-    private AppointmentDAO appointmentDAO;
 
-    public AppointmentController() {
-        appointmentDAO = new AppointmentDAO();
+    private final AppointmentDAO appointmentDAO;
+
+    public AppointmentController(DBConnection db) {
+        this.appointmentDAO = new AppointmentDAO(db);
     }
 
     public void addAppointment(String studentName, String counselorName, String date, String time, String status) {
